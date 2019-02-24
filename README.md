@@ -18,7 +18,7 @@ Es un fichero que permite automatizar tareas, el usado por mí es esta práctica
 
 # Formato de los libros
 Para realizar las pruebas usaremos el libro 132, "The Art of War", con el siguiente formato de datos:
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-19-431.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-19-431.png)
 De los cuales queremos conservar el número del libro (132), el título, una lista con los autores y una lista con los temas.
 
 # BDD
@@ -26,79 +26,79 @@ BDD es un método basado en tests, con los que hacemos un test para comprobar un
 
 # Introducción Mocha y Chai
 Para instalar Mocha y Chai entraremos es el directorio "databases" y crearemos un paquete mínimo de .json con el comando "npm init -y" y después instalaremos Mocha y Chai.
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-21-44.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-21-44.png)
 A continuación editaremos el archivo package.json y añadiremos Mocha al uso de tests.
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-22-31.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-22-31.png)
 Continuaremos creando un nuevo directorio "test" en el que almacenaremos los tests. Y ejecutaremos el primer test de la siguiente forma:
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-22-37.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-22-37.png)
 Mostrando 0 passing ya que no hemos creado ninguna prueba.
 
 Ahora crearemos la primera prueba usando "expect()", "describe()" (para agrupar pruebas) y "it()" (pruebas más pequeñas).
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-36-17.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-36-17.png)
 'use strict'; permite que (como indica el nombre) el compilador sea más estricto, como el de java.
 Y el "expect()" espera que "parseRDF" sea una función. También copiaremos el libro ("cp ../data/cache/epub/132/pg132.rdf test/") para poder usarlo en las pruebas. Ahora correremos los test y dará error ya que no hemos implementado la función.
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-36-23.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-36-23.png)
 
 Para implementar la función y que se cumpla el test añadiremos lo siguiente a un nuevo programa llamado "parse-rdf.js" en "databases/lib".
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-36-26.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-36-26.png)
 Añadiremos un require del programa que acabamos de crear.
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-37-34.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-37-34.png)
 
 Y ejecutamos el test que esta vez se cumplirá.
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-37-50.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-37-50.png)
 
 Seguiremos este método de desarrollo test, error, implementación y cumplimiento de test para crear un objeto "book" al que le iremos incluyendo como atributos el id del libro, su título, los autores y los temas de la siguiente forma:
 -Prueba:
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-40-18.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-40-18.png)
 -Error:
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-40-34.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-40-34.png)
 -Implementación:
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-42-28.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-42-28.png)
 -Éxito:
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-42-45.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-42-45.png)
 
 Para realizar un test continuo sin tener que usar el comando npm test cada vez añadiremos una nueva  línea al fichero "package.json":
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-48-59.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-48-59.png)
 
 Y usaremos el comando "npm run test:watch" en otra terminal, donde veremos los fallos y aciertos cada vez que se modifiquen los programas o se añadan las pruebas:
-![](ImagenesP2/Captura de pantalla de 2019-02-19 16-48-59.png)
+![](ImagenesP2/Capturadepantallade2019-02-1916-48-59.png)
 
 # Extracción de datos de un XML usando Cheerio
 Primero para usar Cheerio lo tenemos que instalar con "npm install --save --save-exact cheerio@0.22.0"
 Ahora crearemos una nueva prueba para comprobar que "book" tiene un atributo "id", que extraeremos con Cheerio.
-![](ImagenesP2/Captura de pantalla de 2019-02-20 19-53-48.png)
-![](ImagenesP2/Captura de pantalla de 2019-02-20 19-54-47.png)
+![](ImagenesP2/Capturadepantallade2019-02-2019-53-48.png)
+![](ImagenesP2/Capturadepantallade2019-02-2019-54-47.png)
 
 Ahora añadiremos un require de Cheerio y usamos el método"load()" de Cheerio para parsear el contenido rdf y la función $ que su retorno es muy similar al de jQuery. Usando la API de Cheerio, extraeremos el id del libro y lo formatearemos. El "+" nos permite convertir el string en un int, y luego dentro de la etiqueta "pgterms\\:ebook" extraeremos el atributo "rdf:about" y eliminaremos "ebooks/" para quedarnos solo con el número.
-![](ImagenesP2/Captura de pantalla de 2019-02-20 19-57-22.png)
+![](ImagenesP2/Capturadepantallade2019-02-2019-57-22.png)
 
 Seguiremos el mismo método para el atributo "title".
-![](ImagenesP2/Captura de pantalla de 2019-02-20 19-59-18.png)
+![](ImagenesP2/Capturadepantallade2019-02-2019-59-18.png)
 
-![](ImagenesP2/Captura de pantalla de 2019-02-20 19-59-29.png)
+![](ImagenesP2/Capturadepantallade2019-02-2019-59-29.png)
 
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-00-59.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-00-59.png)
 
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-01-12.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-01-12.png)
 
 Repetiremos el mismo proceso para los autores y los temas.
 
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-04-11.png)
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-04-16.png)
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-05-47.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-04-11.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-04-16.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-05-47.png)
 En este paso podemos ver cómo describe el atributo "authors" como un array por el que pasa cada elemento de "pgterms\\:agent pgterms\\:name", parseándolo y agregándolo como texto mediante el uso de map.
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-05-59.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-05-59.png)
 
 
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-07-34.png)
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-07-44.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-07-34.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-07-44.png)
 Ahora añadiremos los temas buscando la etiqueta "rdf\\:resource" que sea igual a "LCSH" y subiendo un nivel para acceder a "rdf\\:value" y agregar el elemento al array de temas.
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-08-54.png)
-![](ImagenesP2/Captura de pantalla de 2019-02-20 20-09-00.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-08-54.png)
+![](ImagenesP2/Capturadepantallade2019-02-2020-09-00.png)
 
 # Ejercicios
 Para el primer ejercicio de extracción del código clasificador usaremos el mismo método que con la etiquet a"LCSH" pero ahora con la "LCC".
 Y para poder extraer el formato de descarga y el link de descarga crearemos una objeto auxiliar que tendrá los dos atributos arrays y los extraeremos como hemos hecho con anterioridad. Finalmente crearemos un atributo "downloads" y lo igualaremos al objeto que usado antes.
-![](ImagenesP2/Captura de pantalla de 2019-02-24 18-43-34.png)
-![](ImagenesP2/Captura de pantalla de 2019-02-24 18-44-05.png)
-![](ImagenesP2/Captura de pantalla de 2019-02-24 18-44-22.png)
+![](ImagenesP2/Capturadepantallade2019-02-2418-43-34.png)
+![](ImagenesP2/Capturadepantallade2019-02-2418-44-05.png)
+![](ImagenesP2/Capturadepantallade2019-02-2418-44-22.png)
