@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/ULL-ESIT-PL-1819/p2-t1-testing-alu0101043845.svg?branch=master)](https://travis-ci.org/ULL-ESIT-PL-1819/p2-t1-testing-alu0101043845)
 # p2-t1-testing-alu0101043845
 # Objetivo
 El principal objetivo de esta práctica es la tansformación de datos y el uso de pruebas continuas, así como el método de desarrollo BDD ("Behavior-Driven Development")
